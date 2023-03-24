@@ -1,9 +1,14 @@
 pipeline {
     agent any
     stages {
+       stage('Checkout source code') {
+            steps {
+                git branch: 'dev', url: 'https://github.com/prjpracticeteam/DevOps-Work.git'
+            }
+        }
         stage('Build Docker image') {
             steps {
-                sh 'docker build -t pythonimage:1.0 .'
+                sh 'docker build -t pythonimage:1.0 DevOps-Work/Task-1/.'
             }
         }
         stage('Run Docker container') {
